@@ -1,0 +1,22 @@
+{
+  "name": "todocli",
+  "version": "1.0.0",
+  "description": "To Do Client",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "dev-file": "nodemon app-with-file.js",
+    "start-file": "node app-with-file.js"
+  },
+  "keywords": [],
+  "author": "Juan Ignacio Ronquillo <ronquillojuanignacio@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

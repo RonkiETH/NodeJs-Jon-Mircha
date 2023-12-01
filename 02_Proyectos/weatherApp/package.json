@@ -1,0 +1,14 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "Traeremos la info del clima de una ciudad",
+  "main": "app.js",
+  "type": "module",
+  "keywords": [],
+  "author": "Juan Ignacio Ronquillo <ronquillojuanignacio@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "chalk": "^5.3.0"
+  }
+}

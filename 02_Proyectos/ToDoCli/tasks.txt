@@ -1,0 +1,3 @@
+Terminar proyecto|true
+Comenzar siguiente aplicación de optimizar imágenes con Node|false
+Terminar este cursito|true
