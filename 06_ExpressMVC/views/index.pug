@@ -2,8 +2,9 @@ extends layout
 
 block content 
     main.container  
-        h1.text-center= title 
-        a.add-button(href=`/add`) Agregar tarea
+        h1.text-center= title
+        div.text-right 
+            a.add-button(href=`/add`) Agregar tarea
         ul.task-list
             if tasks.length === 0
                 li 
