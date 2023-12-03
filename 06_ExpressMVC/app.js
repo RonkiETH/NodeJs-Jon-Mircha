@@ -32,17 +32,15 @@ app.use(express.urlencoded({ extended: false }));
 //Definición de las rutas
 app.get("/", taskController.getAllTasks);
 app.get("/add", taskController.getAddTaskForm);
-app.post("/add", taskController.getAddTaskForm);
-app.get("/add", taskController.addTask);
+app.get("/add", taskController.getAddTaskForm);
+app.post("/add", taskController.addTask);
 app.get("/edit/:id", taskController.getEditTaskForm);
 app.post("/edit/:id", taskController.editTask);
 app.get("/complete/:id", taskController.completeTask);
 app.get("/uncomplete/:id", taskController.uncompleteTask);
-app.get("/delete", taskController.deleteTask);
+app.get("/delete/:id", taskController.deleteTask);
 
 app.use(errorController.error404);
-
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
