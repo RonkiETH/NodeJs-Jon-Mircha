@@ -52,6 +52,11 @@ const editTask = (req, res) => {
             err: true,
             message: "Tarea no encontrada"
         });
+    } else if (!req.body.title) {
+        res.status(404).json({
+            err: true,
+            message: "Título vacío"
+        });
     } else {
         tasks[taskIndex].title = req.body.title;
         res.json({ 
