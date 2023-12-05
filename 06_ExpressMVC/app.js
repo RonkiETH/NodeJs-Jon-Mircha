@@ -32,7 +32,6 @@ app.use(express.urlencoded({ extended: false }));
 //Definición de las rutas
 app.get("/", taskController.getAllTasks);
 app.get("/add", taskController.getAddTaskForm);
-app.get("/add", taskController.getAddTaskForm);
 app.post("/add", taskController.addTask);
 app.get("/edit/:id", taskController.getEditTaskForm);
 app.post("/edit/:id", taskController.editTask);
