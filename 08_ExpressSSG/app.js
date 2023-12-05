@@ -26,14 +26,49 @@ const pagesDir = path.join(__dirname, "pages");
 const files = await fs.readdir(pagesDir);
 
 //Lógica para archivos html y md
+for (let file of files) {
+    const filePath = path.join(pagesDir, file);
+    let extname = path.extname(file);
+
+    console.log(file, filePath, extname);
+
+    if (extname === ".md" || extname === ".pug" || extname === ".html") {
+        let fileName = path.basename(file, extname);
+
+        console.log(fileName);
+
+        app.get(`/${fileName}`, async (req, res) => {
+            try {
+                if (extname === ".pug") {
+                    res.render(fileName);
+                }
+
+                if (extname === ".html") {
+                    res.sendFile(filePath);
+                }
+
+                if (extname === ".md") {
+                    let fileContent = await fs.readFile(filePath, "utf-8");
+                    let { attributes: frontMatterAttributes, body } = fm(fileContent);
+
+                    let contentHTML = markdownIt().render(body);
+                    
+                    res.render("layout-markdown", { ...attributes, contentHTML });
+                }
+            } catch (err) {
+                res.status(404).render("error-404")
+            }
+        });
+    }
+}
 
 //Ruta de la página principal
 app.get("/", (req,res) => {
-
+    res.render("index");
 });
 //Ruta del error 404
 app.use((req,res) => {
-
+    res.status(404).render("error-404");
 });
 
 app.listen(PORT, () => console.log(`Sitio web corriendo en http://localhost:${PORT}`));
