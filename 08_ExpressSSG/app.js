@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import fs from "fs/promises";
-import MarkdownIt from "markdown-it";
+import markdownIt from "markdown-it";
 import fm from "front-matter";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.set("pages", path.join(__dirname, "pages"));
+app.set("views", path.join(__dirname, "pages"));
 app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -30,12 +30,12 @@ for (let file of files) {
     const filePath = path.join(pagesDir, file);
     let extname = path.extname(file);
 
-    console.log(file, filePath, extname);
+    // console.log(file, filePath, extname);
 
     if (extname === ".md" || extname === ".pug" || extname === ".html") {
         let fileName = path.basename(file, extname);
 
-        console.log(fileName);
+        // console.log(fileName);
 
         app.get(`/${fileName}`, async (req, res) => {
             try {
@@ -51,6 +51,7 @@ for (let file of files) {
                     let fileContent = await fs.readFile(filePath, "utf-8");
                     let { attributes: frontMatterAttributes, body } = fm(fileContent);
 
+                    let attributes = frontMatterAttributes;
                     let contentHTML = markdownIt().render(body);
                     
                     res.render("layout-markdown", { ...attributes, contentHTML });
